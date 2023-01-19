@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Link, Route, Routes, BrowserRouter, Navigate} from "react-router-dom";
 import { getAuth, onAuthStateChanged,signOut  } from "firebase/auth";
 import "./Styles/styles.scss";
-import { app, messaging } from './firebase';
+import { app, messaging } from './Controllers/firebase/index';
 import Main from './components/Containers/Main';
 import Login from './components/Pages/Login';
 import Register from './components/Pages/Register';
