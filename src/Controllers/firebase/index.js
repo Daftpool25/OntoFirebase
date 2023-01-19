@@ -1,10 +1,9 @@
 //Before 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-//After Firebase Cloud Messaging
 import { getMessaging, getToken } from "firebase/messaging";
-//After Firestore Database
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 
 
@@ -34,6 +33,11 @@ const vapidKey= "BDDteJcET9aeAJNKswG-DVgh0g2fUp_YPlDMNU1e7BtF-vXNqo38pFaKjUAEkj5
 
 //Initialize FireStore
 export const db = getFirestore(app);
+
+//Initialize Storage
+export const storage = getStorage(app);
+
+
 
 
 

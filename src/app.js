@@ -17,6 +17,7 @@ function App() {
   //!CONSTs
   const auth = getAuth();
   const [state, setState] = useState(false);
+  const [userData, setUserData]= useState({email:""});
 
 
   //!USEEFFECT to get the LOGGED USER 
@@ -24,6 +25,7 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setState(true);
+        setUserData({...userData,email:user.email})
         // ...
       } else {
         setState(false);
@@ -37,15 +39,15 @@ function App() {
   function logOut() {
       signOut(auth).then(() => {
         // Sign-out successful.
-        console.log("Sign-out successful");
+        toast.success("Sign-out successful");
 
       }).catch((error) => {
-          console.log(error);
+          toast.error(error);
       });
   }
 
 
-    //!TOAST NOTIFICATION (Es el lisstener al evento recibir notificacion)
+    //!TOAST NOTIFICATION (Listenner to recive notifications)
   onMessage(messaging,payload => {
     console.log(payload);
     toast.success(payload.notification.body)
@@ -54,8 +56,7 @@ function App() {
   //!TOAST you are already logged
   function alreadyLogged(){
     toast('You are already logged', {
-      className:'sucessToast',
-      icon:"❌"});
+      className:'sucessToast'});
     return  <Navigate replace to="/"/>
   }
 
@@ -75,7 +76,7 @@ function App() {
                 <Route exact path='/' element={
 
                     state? 
-                    <Main/>: <Navigate replace to="/login"/>
+                    <Main userData={userData}/>: <Navigate replace to="/login"/>
 
                 }></Route>
                 <Route path='/login' element={

@@ -1,15 +1,13 @@
 import { collection, addDoc, getDocs, setDoc,deleteDoc,doc } from "firebase/firestore"; 
-import { db } from './index';
+import { db,storage } from './index';
+import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
+
 import {toast} from "react-hot-toast";
 
 
-//TODO Agregar imagenes al CREATE, agregar el username
-//TODO agregar un popup si falla y si culmina con éxito
-//TODO Agregar el edit y eliminar
-//TODO Darle una temática, hacer un crud rapido con bootstrap sin user
-//Hacerlo mediante un backend
+//TODO ADD USER PROFILE AND BACKEND
 
-//? "backend" del Create
+//! CREATE CONTROLLER
 export async function addDataBase(post){
     try {
         const docRef = await addDoc(collection(db, "publications"), post);
@@ -29,7 +27,7 @@ export async function addDataBase(post){
       }
 }
 
-//? "backend" del Read
+//! READ CONTROLLER
 export async function readDatabase() {
   const  querySnapshot = await getDocs(collection(db, "publications"));
     console.log("It´s QuerySnapShot: "+querySnapshot);
@@ -43,17 +41,17 @@ export async function readDatabase() {
 }
 
 
-//? "backend" del Edit
+//! EDIT CONTROLLER
 export async function editDataBase(id,data){
   await setDoc(doc(db, "publications", id),data );
-  toast('Success', {
+  toast('Card modified', {
     className:'sucessToast',
     icon:"✔️"
   })
 }
 
 
-//? "backend" del Delete
+//! DELETE CONTROLLER
 export async function deleteDataBase(id){
   console.log(id);
   await deleteDoc(doc(db, "publications", id));
@@ -65,11 +63,50 @@ export async function deleteDataBase(id){
 
 
 
+//! UPLOAD AND GET IMAGES FROM STORAGE
+
+export async function uploadPhoto(path,file){
+  const storageRef = ref(storage, path);
+
+  
+  return uploadBytes(storageRef, file).then((snapshot) => {
+    console.log('Uploaded a blob or file!');
+    return path;
+  })
+}
+
+export  async function downloadPhoto(path){
+    const storageRef = ref(storage, path);
+
+    return getDownloadURL(storageRef)
+    .then((url) => {
+      console.log("url obtenido")
+      console.log(url)
+
+      return url;
+
+    })
+    .catch((error) => {
+
+      switch (error.code) {
+      case 'storage/object-not-found':
+          toast.error('Storage error: objeto no encontrado')
+          break;
+      case 'storage/unauthorized':
+          toast.error('Storage error: No autorizado')
+          break;
+      case 'storage/canceled':
+          toast.error('Storage error: Subida cancelada')
+          break;
+      case 'storage/unknown':
+          toast.error("Error desconocido")
+          break;
+  }
+})
+  
+}
 
 
 
 
 
-//diferencias entre setDoc adDoc y doc, son equivalentes en resultado,
-//agregar data, setdoc necesita especificar un id del doc a crear
-//addDoc crea el mismo, para editar un campo espcifico uso updateDoc()
