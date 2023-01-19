@@ -1,0 +1,23 @@
+@import "./fonts.scss";
+
+@mixin container ($pd,$dirc,$just, $alig, $color) {
+    padding: $pd;
+    display: flex;
+    flex-direction: $dirc;
+    justify-content: $just;
+    align-items: $alig;
+    background-color: $color;
+
+}
+
+@mixin button1 ($color, $textColor, $textSize, $pdX, $pdY){
+    border: none;
+    border-radius: 5px;
+    background-color: $color;
+    color: $textColor;
+    font-weight: 500;
+    font-family: $comfortaa;
+    font-size: $textSize;
+    padding: $pdX $pdY;
+    
+}

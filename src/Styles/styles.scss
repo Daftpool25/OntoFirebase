@@ -1,0 +1,252 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+@import "./mixins.scss";
+@import "./elements.scss";
+
+
+html{
+    height: 100%;
+    body{
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+    
+}
+
+//! HEADER
+
+.Header{
+    @include container(none,row,space-around, center, white);
+    padding: 0.2em;
+
+    @media (max-width:360px){ display:flex; flex-direction: column; justify-content: center; align-items: center;}
+
+    .title{ @include logoText (3.5em,$saturatedColor); text-decoration: none;margin: 0.2em 0em}
+
+    p{@include boldText(1em,$saturatedColor)}
+    
+    button{
+        @include button1($saturatedColor, $ligthColor, 1.3em, 0.5em, 2em);
+        &:hover{
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+    }
+}
+
+//! MAIN
+
+main{
+    height: 100%;
+    @include container (2em,column,center, center, white);
+    margin-top: 3em;
+    h1{
+        @include boldText(3em,$opositeColor);
+    }
+    p{
+        @include regularText(1em, $gray)
+    }
+    input{
+        background-color: $ligthColor;
+        border: none;
+        border-radius: 8px;
+        padding:1.5em 1em ;
+        //? Corrige el desborde
+        box-sizing: border-box;
+        margin-bottom: 1em;
+        width: 100%;
+        font-size: 1em;
+        color: $gray;
+        &:focus{
+            background-color: white;
+            outline-width: 1px;
+            outline-color: $primaryColor;
+        }
+    }
+
+
+    //main container
+    .dataContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+
+        //add data form
+        .addDataContainer{
+            width: 70%;
+
+                .addDataButton{
+                    @include button1 ($primaryColor, $ligthColor, 1.5em, 1em, 2em);
+                    width: 100%;
+                    @media (max-width:360px){padding: 1em;};
+                    &:hover{background-color: $saturatedColor;}
+                }
+        }
+
+        //list of cards
+        .cardsContainer{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            margin: 4em 0em;
+            width: 100%;
+        }
+    }
+    
+}
+
+
+//! LOGIN
+
+.login{
+
+    width: 35%;
+    height: 100%;
+    p{ &:hover{cursor: pointer}}
+    .register{margin-top:2em}
+
+    @media (max-width:360px){ 
+        text-align: center;
+        .btnContainerLogin{
+            flex-direction: column;
+            gap: 0.5em;
+            .googleBtn{background: red;}
+        }
+    }
+
+    @media (max-width: 600px){
+        width: 90%;
+    }
+    @media (min-width: 600px) and (max-width:992px){
+        width: 60%;
+    }
+
+    .inputsContainerLogin{
+        @include container (0em,column,center, center, none);
+        width: 100%;
+
+        input{
+        background-color: $ligthColor;
+        border: none;
+        border-radius: 8px;
+        padding:1.5em 1em ;
+        //? Corrige el desborde
+        box-sizing: border-box;
+        margin-bottom: 1em;
+        width: 100%;
+        font-size: 1em;
+        color: $gray;
+        &:focus{
+            background-color: white;
+            outline-width: 1px;
+            outline-color: $primaryColor;
+        }
+        }
+        .passwordContainerLogin{
+            position: relative;
+            width: 100%;
+            span{
+                position: absolute;
+                right: 1em;
+                top:20px;
+            }
+        }
+    }
+
+    .btnContainerLogin{
+
+        display: flex;
+        justify-content: space-between;
+
+        .loginBtn{
+            @include button1 ($primaryColor, $ligthColor, 1.3em, 0em, 1em);
+            @media (max-width:600px){padding: 1em;}
+            &:hover{
+                background-color: $saturatedColor;
+            }
+        }
+    
+        .googleBtn{
+            @include button1 ($opositeColor, white,1.3em, 0em, 1em);
+            display: flex;
+            flex-direction:row ;
+            justify-content: space-around;
+            gap: 0.5em;
+            align-items: center;
+            p{ color: white; }
+
+            &:hover{
+                background-color:$googleColor;
+            }
+
+        }
+        .registerBtn{
+            @include button1 ($primaryColor, $ligthColor, 1.3em, 1em, 1em);
+            width: 100%;
+            &:hover{
+                background-color: $saturatedColor;
+            }
+        }
+        .disabled{
+            cursor: not-allowed;
+        }
+    }
+
+}
+
+.userContainer{
+    @include container(0em,column,center, center, none);
+    width: 70%;
+    margin-bottom: 4em;
+    
+    img{
+        width: 40%;
+        height: 40%;
+    }
+
+    input{
+        background-color: $ligthColor;
+        border: none;
+        border-radius: 8px;
+        padding:1.5em 1em ;
+        //? Corrige el desborde
+        box-sizing: border-box;
+        margin-bottom: 1em;
+        width: 100%;
+        font-size: 1em;
+        color: $gray;
+        &:focus{
+            background-color: white;
+            outline-width: 1px;
+            outline-color: $primaryColor;
+        }
+    }
+
+    .btnUserContainer{
+        @include container(0em,row,space-around, center, none);
+        width: 100%;
+
+        button{
+            @include button1 ($ligthColor, $opositeColor, 1.3em, 1em, 1em);
+            &:hover{
+                background:$opositeColor;
+                color: $ligthColor;
+            }
+        }
+        .removeButton{
+            @include button1 ($primaryColor, $ligthColor, 1.3em, 1em, 1em);
+            &:hover{
+                background:$saturatedColor;
+            }
+        }
+    }
+}
+
+
+
+

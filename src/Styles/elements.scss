@@ -1,0 +1,92 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+@import "./mixins.scss";
+
+
+.errorContainer{
+
+    width: 100%;
+    text-align: center;
+    padding: 2em 0em;
+
+    .error{
+        background-color: $saturatedColor;
+        border-radius: 8px;
+        border: none;
+        padding: 1em;
+        width: 100%;
+        @include boldText(1em,$ligthColor);
+        &:hover{
+            opacity:0.5;
+            transition: opacity 1s;
+        }
+    }
+}
+
+.card{
+    @include container (1em,column,center, center, $ligthColor);
+    border: none;
+    border-radius: 8px;
+    width: 20em;
+    height: fit-content;
+    margin: 1em 1em;
+    box-shadow: 1px 1px 5px rgba(48, 48, 48, 0.349);
+    &:hover{
+        box-shadow: 3px 3px 5px rgba(48, 48, 48, 0.863);
+    }
+
+    img{
+        width:17em;
+        height: 17em;
+    }
+
+    p{
+        font-size: 2em;
+    }
+    span{
+        @include regularText(1em, $primaryColor);
+    }
+
+    .detailsContainer{
+        display: inline-block;
+        width: 100%;
+        
+        .buttonContainer{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            
+        .editBtn{
+            @include button1 ($opositeColor,$ligthColor, 1em, 1em, 2em);
+            width: fit-content;
+            height: max-content;
+            margin: 0.5em 0em;
+            &:hover{
+                opacity: 0.5;
+                cursor: pointer
+            }
+
+        }
+        .deleteBtn{
+            @include button1 ($primaryColor,$ligthColor, 1em, 1em, 2em);
+            width: fit-content;
+            height: auto;
+            &:hover{
+                opacity: 0.5;
+                cursor: pointer
+            }
+
+        }
+        }
+    }
+}
+
+
+.sucessToast{
+    font-family: $comfortaa;
+    color:green;
+    font-weight: 300;
+
+}
