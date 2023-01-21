@@ -22,19 +22,24 @@ Simple CRUD in react, made using Firebase FiresStore, applying user registration
 
 ## QUICK START:
 
-<p> -Clone repository</p>
-<p> -Run the next commands in the file root:</p>
-<p>     npm install</p>
-<p>     npm start</p>
-<p>-open http://localhost:3000/ in your browser</p>
+<ul>
+  <li> Clone repository</li>
+    <li> Run the next commands in the file root:</li>
+    <li>     npm install</li>
+    <li>     npm start</li>
+    <li>open http://localhost:3000/ in your browser</li>
+</ul>
 
 
 
 ## CREDITS:
 
--React
--Firebase
--react-hot-toast
+<ul>
+   <li>React</li>
+    <li>Firebase</li>
+    <li><a href="https://react-hot-toast.com/">React Host Toast</a></li>
+</ul>
+
 
 # Technologies:
 Javascript, react.js, SASS, Firebase, Firebase Cloud Messaging, FireStore, Firebase Auth, Firebase Storage
